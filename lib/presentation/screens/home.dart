@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../presentation.dart';
+
 const double _kBulletSize = 20 * 4 * 1.4;
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,27 +24,42 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            const Positioned(left: 100, top: 0, child: BulletinRow()),
-            const Positioned(
-                left: 0, top: _kBulletSize + 100, child: BulletinRow()),
-            const Positioned(
-                left: 100, top: 2 * _kBulletSize + 200, child: BulletinRow()),
-            const Positioned(
-                left: 0, top: 3 * _kBulletSize + 300, child: BulletinRow()),
-            const Positioned(
-                left: 100, top: 4 * _kBulletSize + 400, child: BulletinRow()),
-            Center(
+          backgroundColor: Colors.transparent,
+          body: Center(
+            child: Transform.scale(
+              scale: 1,
               child: CustomPaint(
                 painter: Painel(),
-                child: const Placeholder(),
+                child: const Placeholder(
+                  child: SizedBox(
+                    width: 600,
+                    height: 800,
+                  ),
+                ),
               ),
             ),
-          ],
-        ),
-      ),
+          )
+
+          // Stack(
+          //   children: [
+          //     const Positioned(left: 100, top: 0, child: BulletinRow()),
+          //     const Positioned(
+          //         left: 0, top: _kBulletSize + 100, child: BulletinRow()),
+          //     const Positioned(
+          //         left: 100, top: 2 * _kBulletSize + 200, child: BulletinRow()),
+          //     const Positioned(
+          //         left: 0, top: 3 * _kBulletSize + 300, child: BulletinRow()),
+          //     const Positioned(
+          //         left: 100, top: 4 * _kBulletSize + 400, child: BulletinRow()),
+          //     Center(
+          //       child: CustomPaint(
+          //         painter: Painel(),
+          //         child: Container(),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          ),
     );
   }
 }
@@ -74,76 +96,4 @@ class BulletinRow extends StatelessWidget {
       ),
     );
   }
-}
-
-class Painel extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.fill;
-
-    final clockQuarter = Path()
-      ..moveTo(532, 0)
-      ..relativeArcToPoint(
-        const Offset(-532, 532),
-        radius: const Radius.circular(532),
-        clockwise: false,
-      )
-      ..lineTo(84, 532)
-      ..relativeArcToPoint(
-        const Offset(532 - 84, -1 * (532 - 84)),
-        radius: const Radius.circular(532 - 84),
-        clockwise: true,
-      )
-      ..close();
-
-    final circle45 = Path()
-      ..moveTo(84 + 24 + 45, 532 - 45)
-      ..addOval(Rect.fromCircle(
-        center: const Offset(84 + 24 + 45, 532 - 45),
-        radius: 45,
-      ));
-
-    final circle50 = Path()
-      ..moveTo(210, 332)
-      ..addOval(Rect.fromCircle(
-        center: const Offset(210, 332),
-        radius: 45,
-      ));
-
-    final circle55 = Path()
-      ..moveTo(317, 220)
-      ..addOval(Rect.fromCircle(
-        center: const Offset(317, 220),
-        radius: 45,
-      ));
-
-    final circle60 = Path()
-      ..moveTo(532 - 45, 84 + 24 + 45)
-      ..addOval(Rect.fromCircle(
-        center: const Offset(532 - 45, 84 + 24 + 45),
-        radius: 45,
-      ));
-
-    canvas.drawPath(clockQuarter, paint);
-    canvas.drawPath(circle45, paint);
-    canvas.drawPath(circle50, paint);
-    canvas.drawPath(circle55, paint);
-    canvas.drawPath(circle60, paint);
-
-    final hourPointer = Path()
-      ..moveTo(488, 533)
-      ..lineTo(488, 265);
-
-    final paintStroke = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 10;
-
-    canvas.drawPath(hourPointer, paintStroke);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

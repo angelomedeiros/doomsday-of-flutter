@@ -1,0 +1,1 @@
+export 'painel.dart';
