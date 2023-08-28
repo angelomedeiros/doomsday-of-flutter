@@ -9,12 +9,13 @@ class Painel extends CustomPainter {
       ..color = Colors.black
       ..style = PaintingStyle.fill;
 
-    const r = 40.0;
-    const s1 = 30.0;
-    const s2 = 80.0;
-    final s4 = size.width - r;
+    final width = size.width;
+    final r = width / 14;
+    final s1 = width / 19;
+    final s2 = width / 7;
+    final s4 = width - r;
     final s5 = s4 - s2 - s1 - r;
-    const s6 = s1 + r;
+    final s6 = s1 + r;
 
     // funcao que convert degrees to radians
     double degToRad(double deg) => deg * pi / 180;
@@ -51,17 +52,17 @@ class Painel extends CustomPainter {
     final handPaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 15;
+      ..strokeWidth = width / 38;
 
     final hourHand = Path()
       ..moveTo(0, -r)
-      ..lineTo(0, s4 - 9 * r);
+      ..lineTo(0, s4 * 0.4);
 
     canvas.drawPath(hourHand, handPaint);
 
     final minuteHand = Path()
       ..moveTo(0, -r)
-      ..lineTo(0, s4 / 2 + r);
+      ..lineTo(0, s4 * 0.6);
 
     final dateNow = DateTime.now();
     final dateFinal = DateTime(2025, 1, 1);

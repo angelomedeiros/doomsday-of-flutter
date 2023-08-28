@@ -25,18 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Center(
-            child: Transform.scale(
-              scale: 1,
-              child: CustomPaint(
-                painter: Painel(),
-                child: const Placeholder(
-                  child: SizedBox(
-                    width: 600,
-                    height: 800,
-                  ),
-                ),
-              ),
+          body: SingleChildScrollView(
+            child: CustomPaint(
+              painter: Painel(),
+              child: Container(),
             ),
           )
 
