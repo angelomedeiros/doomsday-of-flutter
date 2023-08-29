@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen>
   int remainingDays = 549;
   late int remainingDaysFinal;
 
-  bool mostrarOverlay = false;
+  bool mostrarOverlay = true;
 
   @override
   void initState() {
