@@ -18,8 +18,6 @@ jobs:
 
     steps:
       - name: Create .env file
-        with:
-          name: env-file
         run: |
           cat > .env <<EOF
           API_KEY=${{ secrets.API_KEY }}
@@ -30,6 +28,8 @@ jobs:
           APP_ID=${{ secrets.APP_ID }}
           MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }}
           EOF
+        with:
+          name: env-file
 
       - name: Checkout code
         uses: actions/checkout@v3
