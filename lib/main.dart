@@ -9,13 +9,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseOptions(
-      apiKey: dotenv.env['API_KEY'] ?? '',
-      appId: dotenv.env['APP_ID'] ?? '',
-      messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
-      projectId: dotenv.env['PROJECT_ID'] ?? '',
-      authDomain: dotenv.env['AUTH_DOMAIN'],
-      storageBucket: dotenv.env['STORAGE_BUCKET'],
-      measurementId: dotenv.env['MEASUREMENT_ID'],
+      apiKey: dotenv.get('API_KEY'),
+      appId: dotenv.get('APP_ID'),
+      messagingSenderId: dotenv.get('MESSAGING_SENDER_ID'),
+      projectId: dotenv.get('PROJECT_ID'),
+      authDomain: dotenv.get('AUTH_DOMAIN'),
+      storageBucket: dotenv.get('STORAGE_BUCKET'),
+      measurementId: dotenv.get('MEASUREMENT_ID'),
     ),
   );
 
