@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen>
 
     _initPlayer();
     _initAnimation();
-
     _initCalculateRemainingDays();
   }
 
@@ -162,9 +161,9 @@ class _HomeScreenState extends State<HomeScreen>
                     },
                     color: const Color.fromRGBO(142, 6, 6, 1),
                     hoverColor: Colors.transparent,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.play_circle,
-                      size: MediaQuery.of(context).size.width * 0.15,
+                      size: 150,
                       color: Colors.white,
                     ),
                   ),
