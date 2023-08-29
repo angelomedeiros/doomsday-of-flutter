@@ -1,19 +1,33 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 class Painel extends CustomPainter {
+  final TextTheme textTheme;
+
+  Painel({
+    required this.textTheme,
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
+    final dateNow = DateTime.now();
+    final dateFinal = DateTime(2025, 1, 1);
+    final difference = dateFinal.difference(dateNow).inDays;
+
     final paint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.fill;
 
     final width = size.width;
-    final r = width / 14;
-    final s1 = width / 19;
-    final s2 = width / 7;
-    final s4 = width - r;
+    final height = size.height;
+    final widthMoreGap = width - width / 8;
+
+    final r = widthMoreGap / 14;
+    final s1 = widthMoreGap / 19;
+    final s2 = widthMoreGap / 7;
+    final s4 = widthMoreGap - r;
     final s5 = s4 - s2 - s1 - r;
     final s6 = s1 + r;
 
@@ -25,10 +39,103 @@ class Painel extends CustomPainter {
 
     canvas.save();
 
+    final paintBackground = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 3;
+
+    final background = Path()
+      ..moveTo(r + width / 8, s4)
+      ..lineTo(r, s4)
+      ..arcToPoint(
+        Offset(-s4, -r),
+        radius: Radius.circular(-s4),
+        clockwise: true,
+      )
+      ..lineTo(-s4, -width * 1.43 + s4)
+      ..lineTo(r + width / 8, -width * 1.43 + s4)
+      ..close();
+
+    canvas.drawPath(background, paintBackground);
+
     for (var i = 0; i < 4; i++) {
       canvas.drawCircle(Offset(-s5, 0), r, paint);
       canvas.rotate(degToRad(-30));
     }
+
+    canvas.restore();
+
+    canvas.save();
+
+    canvas.scale(1, -1);
+
+    final textSpan = TextSpan(
+      text: 'IT IS $difference DAYS TO MIDNIGHT',
+      style: textTheme.displayLarge?.copyWith(
+        fontSize: width / 14.2857142857,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+    );
+
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.rtl,
+    );
+
+    textPainter.layout(
+      minWidth: 0,
+      maxWidth: width / 2.1,
+    );
+
+    final position = Offset(-width / 2.3, width / 7);
+
+    textPainter.paint(canvas, position);
+
+    canvas.restore();
+
+    canvas.save();
+
+    final underlinePaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = width / 33.3;
+
+    canvas.drawLine(
+      Offset(r * 2, -width / 2.85),
+      Offset(-width * 0.76, -width / 2.85),
+      underlinePaint,
+    );
+
+    canvas.restore();
+
+    canvas.save();
+
+    canvas.scale(1, -1);
+
+    final subtitle = TextSpan(
+      text:
+          'The last active day for Flutter will be December 31, 2024, according to \'native\' developers',
+      style: textTheme.displayLarge?.copyWith(
+        fontSize: width / 22.2,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+    );
+
+    final subtitlePainter = TextPainter(
+      text: subtitle,
+      textDirection: TextDirection.rtl,
+    );
+
+    subtitlePainter.layout(
+      minWidth: 0,
+      maxWidth: width / 1.2,
+    );
+
+    final positionSubtitle = Offset(-width / 1.4, width / 2.4);
+
+    subtitlePainter.paint(canvas, positionSubtitle);
 
     canvas.restore();
 
@@ -52,7 +159,7 @@ class Painel extends CustomPainter {
     final handPaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
-      ..strokeWidth = width / 38;
+      ..strokeWidth = widthMoreGap / 38;
 
     final hourHand = Path()
       ..moveTo(0, -r)
@@ -64,9 +171,6 @@ class Painel extends CustomPainter {
       ..moveTo(0, -r)
       ..lineTo(0, s4 * 0.6);
 
-    final dateNow = DateTime.now();
-    final dateFinal = DateTime(2025, 1, 1);
-    final difference = dateFinal.difference(dateNow).inDays;
     const oneDayInDregrees = 180 / 1096;
 
     double angleMinuteHand = difference * oneDayInDregrees;

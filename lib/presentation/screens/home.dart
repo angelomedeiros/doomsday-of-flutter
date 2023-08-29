@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final textTheme = Theme.of(context).textTheme;
 
     return Container(
       decoration: const BoxDecoration(
@@ -44,10 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Center(
               child: SizedBox(
                 width: calculateWidth(screenWidth),
-                height: calculateWidth(screenWidth) + 200,
+                height: calculateWidth(screenWidth) * 1.43,
                 child: CustomPaint(
-                  painter: Painel(),
-                  child: const Placeholder(),
+                  painter: Painel(textTheme: textTheme),
+                  child: Container(),
                 ),
               ),
             ),
