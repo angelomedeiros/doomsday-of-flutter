@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen>
     _initPlayer();
     _initAnimation();
     _initCalculateRemainingDays();
+    FirebaseAnalytics.instance.logScreenView(screenName: 'home');
   }
 
   void _initCalculateRemainingDays() {
