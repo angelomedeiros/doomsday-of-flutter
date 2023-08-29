@@ -10,9 +10,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  double calculateWidth(double screenWidth) {
+    if (screenWidth > 1024) {
+      return 500;
+    } else if (screenWidth > 425) {
+      return 400;
+    } else if (screenWidth > 320) {
+      return 350;
+    } else {
+      return 200;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       decoration: const BoxDecoration(
@@ -31,10 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ...BulletinBackground.buildBulletinRows(),
             Center(
               child: SizedBox(
-                width: width > 1024 ? 500 : 300,
-                height: width > 1024 ? 500 : 300,
+                width: calculateWidth(screenWidth),
+                height: calculateWidth(screenWidth) + 200,
                 child: CustomPaint(
                   painter: Painel(),
+                  child: const Placeholder(),
                 ),
               ),
             ),
