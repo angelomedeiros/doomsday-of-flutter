@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Create .env file
         run: |
-          cat > assets/.env <<EOF
+          cat > .env <<EOF
            API_KEY=${{ secrets.API_KEY }}
            AUTH_DOMAIN=${{ secrets.AUTH_DOMAIN }}
            PROJECT_ID=${{ secrets.PROJECT_ID }}
