@@ -1,6 +1,7 @@
-import 'package:doomsday_of_flutter/infra/env.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'infra/infra.dart';
 import 'presentation/presentation.dart';
 
 void main() async {
