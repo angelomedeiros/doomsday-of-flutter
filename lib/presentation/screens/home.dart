@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen>
   AnimationController? controller;
   Animation<double>? animation;
   int remainingDays = 549;
-  late int remainingDaysFinal;
+  int remainingDaysFinal = 0;
 
   bool mostrarOverlay = true;
 
@@ -29,14 +29,18 @@ class _HomeScreenState extends State<HomeScreen>
 
     _initPlayer();
     _initAnimation();
-    _initCalculateRemaningDays();
+
+    _initCalculateRemainingDays();
   }
 
-  void _initCalculateRemaningDays() {
+  void _initCalculateRemainingDays() {
     final dateNow = DateTime.now();
     final dateFinal = DateTime(2025, 1, 1);
-    int remainingDaysInitial = 549;
     remainingDaysFinal = dateFinal.difference(dateNow).inDays;
+  }
+
+  void startClock() {
+    int remainingDaysInitial = 549;
 
     Timer.periodic(
       const Duration(milliseconds: 100),
@@ -136,35 +140,38 @@ class _HomeScreenState extends State<HomeScreen>
               Positioned(
                 left: 10,
                 top: 10,
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: togglePlay,
-                    child: AnimatedIcon(
-                      icon: AnimatedIcons.play_pause,
-                      progress: animation!,
-                    ),
+                child: ElevatedButton(
+                  onPressed: togglePlay,
+                  child: AnimatedIcon(
+                    icon: AnimatedIcons.play_pause,
+                    progress: animation!,
                   ),
                 ),
               ),
             if (mostrarOverlay)
               Positioned.fill(
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      mostrarOverlay = false;
-                    });
-                    togglePlay();
-                  },
-                  child: Container(
-                    color: Colors.black87,
-                    child: const Center(
-                      child: Material(
-                        color: Colors.white,
-                        shape: CircleBorder(),
-                        child: Icon(
+                child: Container(
+                  color: Colors.black87,
+                  alignment: Alignment.center,
+                  constraints: BoxConstraints.tight(const Size(200, 200)),
+                  child: Center(
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          mostrarOverlay = false;
+                        });
+                        togglePlay();
+                        startClock();
+                      },
+                      color: const Color.fromRGBO(142, 6, 6, 1),
+                      icon: Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: const Icon(
                           Icons.play_circle,
                           size: 200,
-                          color: Color.fromRGBO(142, 6, 6, 1),
                         ),
                       ),
                     ),
