@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen>
   void _initPlayer() async {
     try {
       await player?.setAsset(
-        'assets/background.mp3',
+        'assets/audios/background.mp3',
         initialPosition: const Duration(milliseconds: 23600),
       );
       await player?.setLoopMode(LoopMode.all);

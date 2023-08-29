@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'presentation/presentation.dart';
 
 void main() async {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
-        textTheme: GoogleFonts.epilogueTextTheme(),
+        fontFamily: 'Epilogue',
       ),
       home: const HomeScreen(),
     );
