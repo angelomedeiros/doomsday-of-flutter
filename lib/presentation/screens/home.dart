@@ -152,8 +152,6 @@ class _HomeScreenState extends State<HomeScreen>
               Positioned.fill(
                 child: Container(
                   color: Colors.black87,
-                  alignment: Alignment.center,
-                  constraints: BoxConstraints.tight(const Size(200, 200)),
                   child: Center(
                     child: IconButton(
                       onPressed: () {
@@ -164,15 +162,21 @@ class _HomeScreenState extends State<HomeScreen>
                         startClock();
                       },
                       color: const Color.fromRGBO(142, 6, 6, 1),
-                      icon: Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: const Icon(
-                          Icons.play_circle,
-                          size: 200,
-                        ),
+                      hoverColor: Colors.transparent,
+                      icon: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            child: const Icon(
+                              Icons.play_circle,
+                              size: 150,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
