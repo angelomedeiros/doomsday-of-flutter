@@ -162,15 +162,10 @@ class _HomeScreenState extends State<HomeScreen>
                     },
                     color: const Color.fromRGBO(142, 6, 6, 1),
                     hoverColor: Colors.transparent,
-                    icon: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: Icon(
-                        Icons.play_circle,
-                        size: MediaQuery.of(context).size.width * 0.15,
-                      ),
+                    icon: Icon(
+                      Icons.play_circle,
+                      size: MediaQuery.of(context).size.width * 0.15,
+                      color: Colors.white,
                     ),
                   ),
                 ),
