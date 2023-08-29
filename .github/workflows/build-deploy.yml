@@ -28,8 +28,6 @@ jobs:
           APP_ID=${{ secrets.APP_ID }}
           MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }}
           EOF
-        with:
-          name: env-file
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -40,18 +38,12 @@ jobs:
           flutter-version: "3.10.6"
 
       - name: Get dependencies
-        with:
-          name: env-file
         run: flutter pub get
 
       - name: Test project
-        with:
-          name: env-file
         run: flutter test
 
       - name: Build release project
-        with:
-          name: env-file
         run: flutter build web
 
       - name: Upload production-ready build files
