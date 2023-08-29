@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -21,7 +20,6 @@ class Painel extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final width = size.width;
-    final height = size.height;
     final widthMoreGap = width - width / 8;
 
     final r = widthMoreGap / 14;
@@ -31,7 +29,6 @@ class Painel extends CustomPainter {
     final s5 = s4 - s2 - s1 - r;
     final s6 = s1 + r;
 
-    // funcao que convert degrees to radians
     double degToRad(double deg) => deg * pi / 180;
 
     canvas.translate(s4, s4);
