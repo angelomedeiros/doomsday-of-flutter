@@ -152,31 +152,24 @@ class _HomeScreenState extends State<HomeScreen>
               Positioned.fill(
                 child: Container(
                   color: Colors.black87,
-                  child: Center(
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          mostrarOverlay = false;
-                        });
-                        togglePlay();
-                        startClock();
-                      },
-                      color: const Color.fromRGBO(142, 6, 6, 1),
-                      hoverColor: Colors.transparent,
-                      icon: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            child: const Icon(
-                              Icons.play_circle,
-                              size: 150,
-                            ),
-                          ),
-                        ],
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        mostrarOverlay = false;
+                      });
+                      togglePlay();
+                      startClock();
+                    },
+                    color: const Color.fromRGBO(142, 6, 6, 1),
+                    hoverColor: Colors.transparent,
+                    icon: Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
+                      child: Icon(
+                        Icons.play_circle,
+                        size: MediaQuery.of(context).size.width * 0.15,
                       ),
                     ),
                   ),
