@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -15,8 +17,10 @@ class _HomeScreenState extends State<HomeScreen>
   AudioPlayer? player;
   AnimationController? controller;
   Animation<double>? animation;
+  int remainingDays = 549;
+  late int remainingDaysFinal;
 
-  bool mostrarOverlay = true;
+  bool mostrarOverlay = false;
 
   @override
   void initState() {
@@ -25,6 +29,25 @@ class _HomeScreenState extends State<HomeScreen>
 
     _initPlayer();
     _initAnimation();
+    _initCalculateRemaningDays();
+  }
+
+  void _initCalculateRemaningDays() {
+    final dateNow = DateTime.now();
+    final dateFinal = DateTime(2025, 1, 1);
+    int remainingDaysInitial = 549;
+    remainingDaysFinal = dateFinal.difference(dateNow).inDays;
+
+    Timer.periodic(
+      const Duration(milliseconds: 100),
+      (timer) {
+        if (remainingDaysInitial != remainingDaysFinal) {
+          setState(() {
+            remainingDays = --remainingDaysInitial;
+          });
+        }
+      },
+    );
   }
 
   void _initPlayer() async {
@@ -100,7 +123,11 @@ class _HomeScreenState extends State<HomeScreen>
                 width: calculateWidth(screenWidth),
                 height: calculateWidth(screenWidth) * 1.43,
                 child: CustomPaint(
-                  painter: Painel(textTheme: textTheme),
+                  painter: Painel(
+                    textTheme: textTheme,
+                    remainingDays: remainingDays,
+                    remainingDaysFinal: remainingDaysFinal,
+                  ),
                   child: Container(),
                 ),
               ),

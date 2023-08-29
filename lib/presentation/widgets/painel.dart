@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 
 class Painel extends CustomPainter {
   final TextTheme textTheme;
+  final int remainingDays;
+  final int remainingDaysFinal;
 
   Painel({
     required this.textTheme,
+    required this.remainingDays,
+    required this.remainingDaysFinal,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    final dateNow = DateTime.now();
-    final dateFinal = DateTime(2025, 1, 1);
-    final difference = dateFinal.difference(dateNow).inDays;
-
     final paint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.fill;
@@ -66,8 +66,66 @@ class Painel extends CustomPainter {
 
     canvas.scale(1, -1);
 
+    final text2024 = TextSpan(
+      text: '2024',
+      style: textTheme.displayLarge?.copyWith(
+        fontSize: width / 28.2857142857,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    );
+
+    final text2024Painter = TextPainter(
+      text: text2024,
+      textDirection: TextDirection.rtl,
+    );
+
+    text2024Painter.layout(
+      minWidth: 0,
+      maxWidth: width / 2.1,
+    );
+
+    final positionText2024 = Offset(-s5 / 1.07, -r * 4.9);
+
+    text2024Painter.paint(canvas, positionText2024);
+
+    canvas.restore();
+
+    canvas.save();
+
+    canvas.scale(1, -1);
+
+    final text2025 = TextSpan(
+      text: '2025',
+      style: textTheme.displayLarge?.copyWith(
+        fontSize: width / 28.2857142857,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    );
+
+    final text2025Painter = TextPainter(
+      text: text2025,
+      textDirection: TextDirection.rtl,
+    );
+
+    text2025Painter.layout(
+      minWidth: 0,
+      maxWidth: width / 2.1,
+    );
+
+    final positionText2025 = Offset(-r / 1.6, -s5 * 1.03);
+
+    text2025Painter.paint(canvas, positionText2025);
+
+    canvas.restore();
+
+    canvas.save();
+
+    canvas.scale(1, -1);
+
     final textSpan = TextSpan(
-      text: 'IT IS $difference DAYS TO MIDNIGHT',
+      text: 'IT IS $remainingDaysFinal DAYS TO MIDNIGHT',
       style: textTheme.displayLarge?.copyWith(
         fontSize: width / 14.2857142857,
         fontWeight: FontWeight.w600,
@@ -170,12 +228,13 @@ class Painel extends CustomPainter {
 
     const oneDayInDregrees = 180 / 1096;
 
-    double angleMinuteHand = difference * oneDayInDregrees;
+    double angleMinuteHand = remainingDays * oneDayInDregrees;
 
     canvas.rotate(degToRad(angleMinuteHand));
     canvas.drawPath(minuteHand, handPaint);
   }
 
   @override
-  bool shouldRepaint(covariant Painel oldDelegate) => false;
+  bool shouldRepaint(covariant Painel oldDelegate) =>
+      oldDelegate.remainingDays != remainingDays;
 }
