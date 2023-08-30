@@ -14,6 +14,7 @@ permissions:
 jobs:
   build:
     name: Build
+    environment: github-pages
 
     env:
       API_KEY: ${{ secrets.API_KEY }}
@@ -29,7 +30,7 @@ jobs:
 
     steps:
       - name: Print envs
-        run: echo $${{ secrets.GITHUB_TOKEN }} - $${{ secrets.API_KEY }} - $${{ env.API_KEY }} - $${{ vars.API_KEY }} - ${{ secrets.APP_ID }} - ${{ env.APP_ID }} - ${{ vars.APP_ID }} - $$TESTE - $${{ env.TESTE }} - $${{ vars.TESTE }}
+        run: echo ${{ secrets.GITHUB_TOKEN }} - ${{ secrets.API_KEY }} - ${{ env.API_KEY }} - ${{ vars.API_KEY }} - ${{ secrets.APP_ID }} - ${{ env.APP_ID }} - ${{ vars.APP_ID }} - $TESTE - ${{ env.TESTE }} - ${{ vars.TESTE }}
 
       - name: Checkout code
         uses: actions/checkout@v3
