@@ -6,16 +6,9 @@ import 'presentation/presentation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  print('apiKey: ${Env.apiKey}');
-  print('appId: ${Env.appId}');
-  print('messagingSenderId: ${Env.messagingSenderId}');
-  print('projectId: ${Env.projectId}');
-  print('authDomain: ${Env.authDomain}');
-  print('storageBucket: ${Env.storageBucket}');
-  print('measurementId: ${Env.measurementId}');
 
   await Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
       apiKey: Env.apiKey,
       appId: Env.appId,
       messagingSenderId: Env.messagingSenderId,
