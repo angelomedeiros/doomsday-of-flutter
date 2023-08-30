@@ -37697,7 +37697,7 @@ var $async$no=A.F(function(a,b){if(a===1){p=b
 s=q}while(true)switch(s){case 0:q=3
 n=o.d
 if(n==null)n=null
-else n=n.pK(A.amI(A.jb("asset:///audios/background.mp3"),null,null),B.Aa,!0)
+else n=n.pK(A.amI(A.jb("asset:///assets/audios/background.mp3"),null,null),B.Aa,!0)
 s=6
 return A.A(n,$async$no)
 case 6:n=o.d
