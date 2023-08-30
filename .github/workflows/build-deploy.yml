@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Print envs
+        run: echo $${{ secrets.GITHUB_TOKEN }} - $${{ env.API_KEY }} - $${{ vars.API_KEY }} - ${{ secrets.APP_ID }} - ${{ env.APP_ID }} - ${{ vars.APP_ID }}
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -27,9 +30,6 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
-
-      - name: Print envs
-        run: echo $${{ secrets.API_KEY }} - $${{ env.API_KEY }} - $${{ vars.API_KEY }} - ${{ secrets.APP_ID }} - ${{ env.APP_ID }} - ${{ vars.APP_ID }}
 
       - name: Build envs
         run: flutter pub run build_runner build --delete-conflicting-outputs
