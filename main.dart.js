@@ -8341,15 +8341,15 @@ a9s(){var s=0,r=A.E(t.z),q,p
 var $async$a9s=A.F(function(a,b){if(a===1)return A.B(b,r)
 while(true)switch(s){case 0:if($.ax==null)A.agV()
 $.ax.toString
-A.h8("apiKey: ")
-A.h8("appId: ")
-A.h8("messagingSenderId: ")
-A.h8("projectId: ")
-A.h8("authDomain: ")
-A.h8("storageBucket: ")
-A.h8("measurementId: ")
+A.h8("apiKey: AIzaSyBI9zh-unEqal9LDntO0ESaJchpnbtM1Y0")
+A.h8("appId: 1:62018877734:web:c5544ac40f89a665e169e7")
+A.h8("messagingSenderId: 62018877734")
+A.h8("projectId: doomsday-of-flutter")
+A.h8("authDomain: doomsday-of-flutter.firebaseapp.com")
+A.h8("storageBucket: doomsday-of-flutter.appspot.com")
+A.h8("measurementId: G-TZPBWE04D7")
 s=2
-return A.A(A.TL(A.aeH("","","",null,"","","","")),$async$a9s)
+return A.A(A.TL(A.aeH("AIzaSyBI9zh-unEqal9LDntO0ESaJchpnbtM1Y0","1:62018877734:web:c5544ac40f89a665e169e7","doomsday-of-flutter.firebaseapp.com",null,"G-TZPBWE04D7","62018877734","doomsday-of-flutter","doomsday-of-flutter.appspot.com")),$async$a9s)
 case 2:if($.ax==null)A.agV()
 q=$.ax
 q.toString
